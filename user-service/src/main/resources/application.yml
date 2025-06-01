@@ -1,0 +1,39 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: user-service
+  cloud:
+    discovery:
+      client:
+        health-indicator:
+          enabled: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/microservice
+    username: postgres
+    password: postgres
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+graphql:
+  spqr:
+    base-packages: com.practice.user_service
+    http:
+      endpoint: /api/user
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8121/eureka
+    initial-instance-info-replication-interval-seconds: 30
+    registry-fetch-interval-seconds: 30
+
+  instance:
+    preferIpAddress: true
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}

@@ -1,0 +1,16 @@
+server:
+  port: 8121
+
+spring:
+    application:
+        name: config-server
+
+eureka:
+    client:
+        register-with-eureka: false
+        fetch-registry: false
+        service-url:
+          defaultZone: http://localhost:8121/eureka/
+    instance:
+      hostname: localhost
+      prefer-ip-address: true
